@@ -1,0 +1,16 @@
+﻿@page "/"
+
+<PinMap Data="@persons" PinLongitude="@(x => x.Longitude)" PinLatitude="@(x => x.Latitude)">
+    <PinTemplate>
+        <h4>@context.Name</h4>
+        <p><strong>Mission:</strong> @context.Detail</p>
+    </PinTemplate>
+</PinMap>
+
+@code{
+    List<Person> persons;
+    protected override void OnInitialized()
+    {
+        persons = new List<Person>();
+    }
+}
