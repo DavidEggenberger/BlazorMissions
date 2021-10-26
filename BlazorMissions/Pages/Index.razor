@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject IJSRuntime JS
 
 <PinMap Data="@persons" PinLongitude="@(x => x.Longitude)" PinLatitude="@(x => x.Latitude)">
     <PinTemplate>
@@ -8,9 +9,23 @@
 </PinMap>
 
 @code{
-    List<Person> persons;
+    static List<Person> persons;
+    static Index index;
     protected override void OnInitialized()
     {
         persons = new List<Person>();
+        index = this;
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        await JS.InvokeVoidAsync("getLocation");
+    }
+
+    [JSInvokable("SetUserLocation")]
+    public static void SetUserLocation(double lattitude, double longitude)
+    {
+        persons.Add(new Person { Latitude = lattitude, Longitude = longitude });
+        Console.WriteLine(lattitude + " " + longitude);
+        index.StateHasChanged();
     }
 }

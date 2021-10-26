@@ -1,6 +1,11 @@
 ﻿body {
     margin: 0;
 }
+
+#blazor-error-ui{
+    display: none;
+}
+
 .pin-map {
     position: absolute !important;
     top: 64px;

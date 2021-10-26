@@ -1,4 +1,6 @@
-﻿class PinMap {
+﻿
+
+class PinMap {
     static createOrUpdate(el, center) {
         if (!el.hasMap) {
             el.hasMap = true;
