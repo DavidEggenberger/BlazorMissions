@@ -1,1 +1,21 @@
-﻿
+﻿<h3>@Location</h3>
+
+@code{
+    static NavMenu navMenu;
+    protected override void OnInitialized()
+    {
+        navMenu = this;
+    }
+
+    private static string location;
+
+    public static string Location
+    {
+        get { return location; }
+        set
+        {
+            location = value;
+            navMenu.StateHasChanged();
+        }
+    }
+}

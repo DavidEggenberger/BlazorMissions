@@ -25,7 +25,12 @@
     public static void SetUserLocation(double lattitude, double longitude)
     {
         persons.Add(new Person { Latitude = lattitude, Longitude = longitude });
-        Console.WriteLine(lattitude + " " + longitude);
         index.StateHasChanged();
+    }
+
+    [JSInvokable("SelectUser")]
+    public static void SelectUser(string lattitude, string longitude)
+    {
+        NavMenu.Location = lattitude + " " + longitude;
     }
 }
