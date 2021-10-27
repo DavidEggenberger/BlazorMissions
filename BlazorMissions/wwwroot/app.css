@@ -1,6 +1,7 @@
 ﻿body {
     margin: 0;
     color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #blazor-error-ui{
@@ -8,11 +9,9 @@
 }
 
 .pin-map {
-    position: absolute !important;
-    top: 64px;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    height: 100%;
+    width: 100%;
+    outline: none !important;
 }
 
 map-pin {

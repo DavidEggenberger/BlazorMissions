@@ -5,6 +5,8 @@
 .main {
     height: calc(100vh - 80px);
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
 }
 nav {
     height: 80px;

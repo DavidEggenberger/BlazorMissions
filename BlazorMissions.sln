@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMissions", "BlazorMissions\BlazorMissions.csproj", "{B35D54D9-2C17-431C-BBF6-B8CB205FB466}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PinMapLibrary", "PinMapLibrary\PinMapLibrary.csproj", "{7BCB094F-FA1C-4F7B-BC7B-1CC305AC7971}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PinMapLibrary", "PinMapLibrary\PinMapLibrary.csproj", "{7BCB094F-FA1C-4F7B-BC7B-1CC305AC7971}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
