@@ -97,7 +97,7 @@
             const markerElement = document.createElement('div');
             markerElement.style.width = '20px';
             markerElement.style.height = '20px';
-            markerElement.addEventListener("click", function(){ DotNet.invokeMethodAsync('BlazorMissions', 'SelectUser', displayElement.dataset.latitude, displayElement.dataset.longitude); });
+            markerElement.addEventListener("click", function(){ DotNet.invokeMethodAsync('BlazorMissions', 'SelectUser', displayElement.getAttribute("userId")); });
             displayElement.mapMarker = new mapboxgl.Marker({ offset: [0, 5], element: markerElement })
                 .setLngLat(coordinates)
                 .addTo(map);

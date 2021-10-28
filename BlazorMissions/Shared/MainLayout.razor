@@ -2,15 +2,41 @@
 
 <div class="page">
     <nav>
-        <NavMenu/>
+        <NavMenu SelectedAgent="selectedAgent"/>
     </nav>
 
-    <div class="main">
-        <aside>
-            <AsideComponent/>>
-        </aside>
-        <div class="body">
-            @Body
-        </div>
-    </div>
+    <CascadingValue TValue="Action" Value="() => this.StateHasChanged()" Name="Update">
+        <CascadingValue Name="Agents" Value="agents">
+            <CascadingValue Name="AgentSelectedCallback" TValue="Action<Agent>" Value="SelectAgent">
+                <div class="main">
+                    <aside>
+                        <AsideComponent />
+                    </aside>
+                    <div class="body">
+                        @Body
+                    </div>
+                </div>
+            </CascadingValue>
+        </CascadingValue>
+    </CascadingValue> 
 </div>
+
+@code{
+    private Agent selectedAgent;
+    private List<Agent> agents;
+    protected override void OnInitialized()
+    {
+        agents = new List<Agent>()
+        {
+            new Agent{ Name = "Iwan", Mission = "Inspect the Gym", Latitude = 47.41985431846254, Longitude = 9.3658882367081},
+            new Agent{ Name = "Lukas", Mission = "Inspect the Gym", Latitude = 47.41985431846254, Longitude = 9.3658882367081},
+            new Agent{ Name = "Lea", Mission = "Infiltrating the swimming pond", Latitude = 47.41985431846254, Longitude = 9.3658882367081},
+            new Agent{ Name = "Sabine", Mission = "Checking out the hospital supply", Latitude = 47.41985431846254, Longitude = 9.3658882367081},
+        };
+    }
+    public void SelectAgent(Agent agent)
+    {
+        selectedAgent = agent;
+        StateHasChanged();
+    }
+}

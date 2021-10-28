@@ -1,7 +1,7 @@
 ﻿@page "/"
 @inject IJSRuntime JS
 
-<PinMap Data="@agents" PinLongitude="@(x => x.Longitude)" PinLatitude="@(x => x.Latitude)">
+<PinMap Data="@Agents" PinLongitude="@(x => x.Longitude)" PinLatitude="@(x => x.Latitude)" UserId="(x => x.Id)">
     <PinTemplate>
         <h4>@context.Name</h4>
         <p><strong>Mission:</strong> @context.Mission</p>
@@ -9,30 +9,36 @@
 </PinMap>
 
 @code{
-    [Parameter]
+    [CascadingParameter(Name = "Agents")]
     public List<Agent> Agents { get; set; }
+    [CascadingParameter(Name = "AgentSelectedCallback")]
+    public Action<Agent> AgentSelected { get; set; }
+    [CascadingParameter(Name = "Update")]
+    public Action Update { get; set; }
 
-    static List<Agent> agents;
     static Index index;
     protected override void OnInitialized()
     {
         index = this;
     }
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await JS.InvokeVoidAsync("getLocation");
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("getLocation");
+        }
     }
 
     [JSInvokable("SetUserLocation")]
     public static void SetUserLocation(double lattitude, double longitude)
     {
-        agents.Add(new Agent { Latitude = lattitude, Longitude = longitude });
-        index.StateHasChanged();
+        index.Agents.Add(new Agent { Latitude = lattitude, Longitude = longitude, Name = "YourSelf" });
+        index.Update();
     }
 
     [JSInvokable("SelectUser")]
-    public static void SelectUser(string lattitude, string longitude)
+    public static async Task SelectUser(Guid userId)
     {
-        NavMenu.Location = lattitude + " " + longitude;
+        index.AgentSelected(index.Agents.First(agent => agent.Id == userId));
     }
 }

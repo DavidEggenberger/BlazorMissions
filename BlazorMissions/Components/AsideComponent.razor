@@ -1,12 +1,17 @@
-﻿
+﻿<div class="asideContainer">
+    @foreach (var agent in Agents)
+    {
+        <section class="agentSection">
+            @agent.Name
+        </section>
+    }
+</div>
 
 @code{
-    private List<Agent> agents;
-    protected override void OnInitialized()
-    {
-        agents = new List<Agent>()
-        {
-            new Agent{ Name = "Bob", Mission = "Inspect the Gym", }
-        };
-    }
+    [CascadingParameter(Name = "Agents")]
+    public List<Agent> Agents { get; set; }
+    [Parameter]
+    public EventCallback<Agent> AgentAddedToMap { get; set; }
+    [Parameter]
+    public EventCallback<Agent> AgentRemovedFromMap { get; set; }
 }

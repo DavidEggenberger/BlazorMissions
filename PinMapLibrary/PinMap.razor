@@ -4,7 +4,7 @@
 <div class="pin-map" @ref="mapElem">
     @foreach (var item in Data)
     {
-        <map-pin @key="item" data-longitude="@PinLongitude(item)" data-latitude="@PinLatitude(item)">
+        <map-pin @key="item" data-longitude="@PinLongitude(item)" data-latitude="@PinLatitude(item)" userId="@UserId(item)">
             @PinTemplate(item)
         </map-pin>
     }
@@ -12,6 +12,7 @@
 
 @code{    
     [Parameter] public List<T> Data { get; set; }
+    [Parameter] public Func<T, Guid> UserId { get; set; }
     [Parameter] public Func<T, double> PinLongitude { get; set; }
     [Parameter] public Func<T, double> PinLatitude { get; set; }
     [Parameter] public RenderFragment<T> PinTemplate { get; set; }

@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
+using MediatR;
 
 namespace BlazorMissions
 {
@@ -18,6 +20,7 @@ namespace BlazorMissions
             builder.RootComponents.Add<App>("#app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddMediatR(typeof(Program).Assembly);
 
             await builder.Build().RunAsync();
         }
