@@ -10,13 +10,13 @@
     }
 </div>
 
-@code {
-    ElementReference mapElem;
-    
+@code{    
     [Parameter] public List<T> Data { get; set; }
     [Parameter] public Func<T, double> PinLongitude { get; set; }
     [Parameter] public Func<T, double> PinLatitude { get; set; }
     [Parameter] public RenderFragment<T> PinTemplate { get; set; }
+
+    private ElementReference mapElem;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

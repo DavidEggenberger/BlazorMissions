@@ -1,19 +1,21 @@
 ﻿@page "/"
 @inject IJSRuntime JS
 
-<PinMap Data="@persons" PinLongitude="@(x => x.Longitude)" PinLatitude="@(x => x.Latitude)">
+<PinMap Data="@agents" PinLongitude="@(x => x.Longitude)" PinLatitude="@(x => x.Latitude)">
     <PinTemplate>
         <h4>@context.Name</h4>
-        <p><strong>Mission:</strong> @context.Detail</p>
+        <p><strong>Mission:</strong> @context.Mission</p>
     </PinTemplate>
 </PinMap>
 
 @code{
-    static List<Person> persons;
+    [Parameter]
+    public List<Agent> Agents { get; set; }
+
+    static List<Agent> agents;
     static Index index;
     protected override void OnInitialized()
     {
-        persons = new List<Person>();
         index = this;
     }
     protected override async Task OnInitializedAsync()
@@ -24,7 +26,7 @@
     [JSInvokable("SetUserLocation")]
     public static void SetUserLocation(double lattitude, double longitude)
     {
-        persons.Add(new Person { Latitude = lattitude, Longitude = longitude });
+        agents.Add(new Agent { Latitude = lattitude, Longitude = longitude });
         index.StateHasChanged();
     }
 

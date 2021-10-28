@@ -1,1 +1,12 @@
 ﻿
+
+@code{
+    private List<Agent> agents;
+    protected override void OnInitialized()
+    {
+        agents = new List<Agent>()
+        {
+            new Agent{ Name = "Bob", Mission = "Inspect the Gym", }
+        };
+    }
+}
