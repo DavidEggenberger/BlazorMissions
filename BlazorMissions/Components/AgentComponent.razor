@@ -1,0 +1,15 @@
+﻿<div class="agentComponentContainer">
+    <div class="agentContainer">
+
+    </div>
+    <SwitchComponent />
+</div>
+
+@code{
+    [Parameter]
+    public Agent Agent { get; set; }
+    [Parameter]
+    public EventCallback<Agent> AgentAddedToMap { get; set; }
+    [Parameter]
+    public EventCallback<Agent> AgentRemovedFromMap { get; set; }
+}

@@ -1,0 +1,13 @@
+﻿.agentComponentContainer {
+    background-color: rgba(148, 29, 128, 1);
+    color: white;
+    display: grid;
+    justify-content: space-between;
+    align-content: flex-end;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    padding: 5px;
+}
+.showContainer{
+
+}

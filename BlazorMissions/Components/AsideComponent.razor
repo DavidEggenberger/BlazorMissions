@@ -1,17 +1,13 @@
 ﻿<div class="asideContainer">
     @foreach (var agent in Agents)
     {
-        <section class="agentSection">
-            @agent.Name
-        </section>
+        <AgentComponent Agent="agent"/>
     }
 </div>
 
 @code{
     [CascadingParameter(Name = "Agents")]
     public List<Agent> Agents { get; set; }
-    [Parameter]
-    public EventCallback<Agent> AgentAddedToMap { get; set; }
-    [Parameter]
-    public EventCallback<Agent> AgentRemovedFromMap { get; set; }
+    [CascadingParameter(Name = "Update")]
+    public Action Update { get; set; }
 }

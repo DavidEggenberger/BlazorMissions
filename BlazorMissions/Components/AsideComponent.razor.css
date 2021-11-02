@@ -1,6 +1,7 @@
 ﻿.asideContainer{
     color: black;
     padding: 10px;
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
 }
